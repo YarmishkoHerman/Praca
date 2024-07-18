@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canva</title>
+<style>
+    #canva {
+        border: 1px solid #000;
+        cursor: crosshair;
+    }
+    .toolbar {
+        margin-bottom: 10px;
+    }
+</style>
+</head>
+<body>
+<div class="toolbar">
+    <button id="lineBtn">Linia</button>
+    <button id="circleBtn">Koło</button>
+    <button id="textBtn">Tekst</button>
+    <label for="StroskeColor">Kolor kontуру:</label>
+    <input type="color" id="strokeColor" value="#000000">
+    <label for="fillColor">Kolor заповнення:</label>
+    <input type="color" id="fillColor" value="#ffffff">
+</div>
+<canvas id="canva" width="800" height="600"></canvas>
+<script>
+    const canva = document.getElementById('canva');
+    const ctx = canva.getContext('2d');
+    let startX, startY;
+    let tool = '';
+    let strokeColor = document.getElementById('strokeColor').value;
+    let fillColor = document.getElementById('fillColor').value;
+
+    document.getElementById('strokeColor').oninput = (e) => strokeColor = e.target.value;
+    document.getElementById('fillColor').oninput = (e) => fillColor = e.target.value;
+
+    document.querySelectorAll('button').forEach(btn => {
+        btn.onclick = () => {
+            tool = btn.id;
+            document.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        };
+    });
+
+    canva.onmousedown = (e) => {
+        startX = e.offsetX;
+        startY = e.offsetY;
+    };
+
+    canva.onmouseup = (e) => {
+        const x = e.offsetX;
+        const y = e.offsetY;
+
+        ctx.strokeStyle = strokeColor;
+        ctx.fillStyle = fillColor;
+
+        if (tool === 'lineBtn') {
+            ctx.beginPath();
+            ctx.moveTo(startX, startY);
+            ctx.lineTo(x, y);
+            ctx.stroke();
+        } else if (tool === 'circleBtn') {
+            const radius = Math.sqrt((x - startX) ** 2 + (y - startY) ** 2);
+            ctx.beginPath();
+            ctx.arc(startX, startY, radius, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.stroke();
+        } else if (tool === 'textBtn') {
+            const text = prompt('Wprowadź tekst:');
+            ctx.font = '16px Arial';
+            ctx.fillStyle = strokeColor; // Використовуємо колір контуру для тексту
+            ctx.fillText(text, x, y);
+        }
+    };
+</script>
+</body>
+</html>
