@@ -1,4 +1,5 @@
-import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.module.js';
+import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 // Tworzenie sceny
 const scene = new THREE.Scene();
@@ -40,11 +41,17 @@ plane.rotation.x = -Math.PI / 2; // Obrót płaszczyzny o 90 stopni
 plane.position.y = -1; // Umieszczenie płaszczyzny pod kulą
 scene.add(plane); 
 
+// Dodanie kontroli orbity
+const controls = new OrbitControls(camera, renderer.domElement);
+
 // Animowanie kuli
 function animate() {
   requestAnimationFrame(animate);
 
   sphere.rotation.y += 0.03;
+
+  // Aktualizacja kontroli
+  controls.update();
 
   renderer.render(scene, camera);
 }
