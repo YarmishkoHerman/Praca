@@ -44,11 +44,17 @@ scene.add(plane);
 // Dodanie kontroli orbity
 const controls = new OrbitControls(camera, renderer.domElement);
 
+//Background
+const backgroundTexture = textureLoader.load('back5.jpg');
+scene.background = backgroundTexture;
+
+
 // Animowanie kuli
 function animate() {
   requestAnimationFrame(animate);
 
   sphere.rotation.y += 0.03;
+  plane.rotation.z += 0.01;
 
   // Aktualizacja kontroli
   controls.update();
