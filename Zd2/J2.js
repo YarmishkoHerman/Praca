@@ -23,7 +23,7 @@ scene.add(light);
 
 // Ładowanie tekstur
 const textureLoader = new THREE.TextureLoader();
-const stoneTexture = textureLoader.load('zemia.jpg');
+const stoneTexture = textureLoader.load('1626899463_24-kartinkin-com-p-tekstura-planeti-besshovnaya-krasivo-32.jpg');
 const metalTexture = textureLoader.load('metal-5.jpg');
 
 // Tworzenie geometrii kuli i materiału
@@ -38,8 +38,26 @@ const planeGeometry = new THREE.PlaneGeometry(5, 5);
 const planeMaterial = new THREE.MeshPhongMaterial({ map: metalTexture });
 const plane = new THREE.Mesh(planeGeometry, planeMaterial);
 plane.rotation.x = -Math.PI / 2; // Obrót płaszczyzny o 90 stopni
-plane.position.y = -1; // Umieszczenie płaszczyzny pod kulą
+plane.position.y = -1.3; // Umieszczenie płaszczyzny pod kulą
 scene.add(plane); 
+
+//  (Cylinder)
+const baseGeometry = new THREE.CylinderGeometry(0.5, 0.5, 0.2, 32);
+const baseMaterial = new THREE.MeshPhongMaterial({ color: 0x000000 });
+const base = new THREE.Mesh(baseGeometry, baseMaterial);
+base.position.y = -1.1; 
+scene.add(base);
+
+const cylinderGeometry = new THREE.CylinderGeometry(0.1, 0.1, 0.3, 32);
+const cylinderMaterial = new THREE.MeshPhongMaterial({ color: 0x000000 });
+const cylinder = new THREE.Mesh(cylinderGeometry, cylinderMaterial);
+cylinder.position.y = 1; 
+scene.add(cylinder);
+
+const supportGeometry = new THREE.TorusGeometry(1.2, 0.05, 8, 100);
+const supportMaterial = new THREE.MeshPhongMaterial({ color: 0x000000 });
+const support = new THREE.Mesh(supportGeometry, supportMaterial);
+scene.add(support);
 
 // Dodanie kontroli orbity
 const controls = new OrbitControls(camera, renderer.domElement);
@@ -53,9 +71,10 @@ scene.background = backgroundTexture;
 function animate() {
   requestAnimationFrame(animate);
 
-  sphere.rotation.y += 0.03;
-  plane.rotation.z += 0.01;
-
+  sphere.rotation.y += 0.02;
+  plane.rotation.z += 0.02;
+  base.rotation.y += 0.02;
+  support.rotation.y -= 0.02;
   // Aktualizacja kontroli
   controls.update();
 
@@ -64,3 +83,4 @@ function animate() {
 
 // Uruchomienie animacji
 animate();
+
