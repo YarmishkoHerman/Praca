@@ -1,0 +1,58 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #d6dc7c;
+}
+
+.form-group {
+    margin-bottom: 12px;
+}
+
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #000000;
+}
+
+.form-container {
+    background: rgba(255, 255, 255, 0.263);
+    padding: 50px;
+    border-radius: 20px;
+    width: 400px;
+    position: relative;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: content-box;
+    border: 1px solid #4d2c2c;
+    border-radius: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    cursor: pointer;
+    background-color: #00da2f;
+    color: white;
+    font-size: 16px;
+    border-radius: 7px;
+}
+
+.error {
+    display: none;
+    color: red;
+    font-size: 12px;
+    margin-top: 6px;
+}
+
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}

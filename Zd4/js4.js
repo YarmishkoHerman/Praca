@@ -64,7 +64,7 @@ function animate() {
 
     for (let i = 0; i < particleCount * 3; i += 3) {
         const x = positions[i]; // Współrzędna X
-        positions[i + 4] = amplitude * Math.sin(x * 0.5 + performance.now() * waveSpeed); // Aktualizacja współrzędnej Z dla efektu fali
+        positions[i + 2] = amplitude * Math.sin(x * 0.5 + performance.now() * waveSpeed); // Aktualizacja współrzędnej Z dla efektu fali
     }
 
     particleSystem.geometry.attributes.position.needsUpdate = true; // Oznaczenie atrybutu pozycji jako wymagającego aktualizacji
