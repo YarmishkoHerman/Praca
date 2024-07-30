@@ -1,70 +1,56 @@
 <!DOCTYPE html>
-<html lang="pl">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formularz Rejestracyjny</title>
-    <link rel="stylesheet" href="formcss.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <title>Formularz z Walidacją</title>
+ <link rel="stylesheet" href="formcss.css">
 </head>
-
 <body>
-    <div id="particles-js"></div>
-    <div class="form-container">
-        <h3>Rejestracja</h3>
-        <form id="registrationForm">
-            <div class="form-group">
-                <label for="firstName">Imię:</label>
-                <input type="text" id="firstName" name="firstName">
-                <div class="error" id="firstNameError">Pole Imię jest wymagane.</div>
-            </div>
-            <div class="form-group">
-                <label for="lastName">Nazwisko:</label>
-                <input type="text" id="lastName" name="lastName">
-                <div class="error" id="lastNameError">Pole Nazwisko jest wymagane.</div>
-            </div>
-            <div class="form-group">
-                <label for="email">Adres e-mail:</label>
-                <input type="text" id="email" name="email">
-                <div class="error" id="emailError">Proszę wpisać poprawny adres e-mail.</div>
-            </div>
-            <div class="form-group">
-                <label for="password">Hasło:</label>
-                <input type="password" id="password" name="password">
-                <div class="error" id="passwordError">Hasło musi mieć minimum 8 znaków.</div>
-            </div>
-            <div class="form-group">
-                <label for="confirmPassword">Powtórz hasło:</label>
-                <input type="password" id="confirmPassword" name="confirmPassword">
-                <div class="error" id="confirmPasswordError">Hasła nie są identyczne.</div>
-            </div>
-            <div class="form-group">
-                <label for="companyName">Nazwa firmy:</label>
-                <input type="text" id="companyName" name="companyName">
-                <div class="error" id="companyNameError">Pole Nazwa firmy jest wymagane.</div>
-            </div>
-            <div class="form-group">
-                <label for="address">Adres:</label>
-                <input type="text" id="address" name="address">
-                <div class="error" id="addressError">Pole Adres jest wymagane.</div>
-            </div>
-            <div class="form-group">
-                <label for="nip">NIP:</label>
-                <input type="text" id="nip" name="nip">
-                <div class="error" id="nipError">NIP musi zawierać dokładnie 10 cyfr.</div>
-            </div>
-            <button type="button" onclick="validateForm()">Submit</button>
-        </form>
-    </div>
+    <form id="registrationForm" action="submit_form.php" method="post" onsubmit="return validateForm()">
+        <div class="form-group">
+            <label for="firstName">Imię</label>
+            <input type="text" id="firstName" name="firstName">
+            <div class="error" id="firstNameError"></div>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Nazwisko</label>
+            <input type="text" id="lastName" name="lastName">
+            <div class="error" id="lastNameError"></div>
+        </div>
+        <div class="form-group">
+            <label for="email">Adres e-mail</label>
+            <input type="text" id="email" name="email">
+            <div class="error" id="emailError"></div>
+        </div>
+        <div class="form-group">
+            <label for="password">Hasło</label>
+            <input type="password" id="password" name="password">
+            <div class="error" id="passwordError"></div>
+        </div>
+        <div class="form-group">
+            <label for="confirmPassword">Powtórz hasło</label>
+            <input type="password" id="confirmPassword" name="confirmPassword">
+            <div class="error" id="confirmPasswordError"></div>
+        </div>
+        <div class="form-group">
+            <label for="companyName">Nazwa firmy</label>
+            <input type="text" id="companyName" name="companyName">
+            <div class="error" id="companyNameError"></div>
+        </div>
+        <div class="form-group">
+            <label for="address">Adres</label>
+            <input type="text" id="address" name="address">
+            <div class="error" id="addressError"></div>
+        </div>
+        <div class="form-group">
+            <label for="nip">NIP</label>
+            <input type="text" id="nip" name="nip">
+            <div class="error" id="nipError"></div>
+        </div>
+        <button type="submit" class="submit-btn">Submit</button>
+    </form>
 
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="formjs.js"></script>
-    <script>
-        particlesJS.load('particles-js', 'particles.json', function () {
-            console.log('Particles.js loaded - callback');
-        });
-    </script>
+<script src="formjs.js"></script>
 </body>
-
 </html>

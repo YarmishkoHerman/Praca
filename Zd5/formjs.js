@@ -1,81 +1,73 @@
 function validateForm() {
-    var isValid = true;
+    let isValid = true;
 
-    // Pobieranie elementów
-    var firstName = document.getElementById("firstName");
+    // Clear previous errors
+    document.querySelectorAll('.error').forEach(error => error.innerText = '');
 
-    var lastName = document.getElementById("lastName");
+    // Get form values
+    const firstName = document.getElementById('firstName').value.trim();
+    const lastName = document.getElementById('lastName').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
+    const confirmPassword = document.getElementById('confirmPassword').value.trim();
+    const companyName = document.getElementById('companyName').value.trim();
+    const address = document.getElementById('address').value.trim();
+    const nip = document.getElementById('nip').value.trim();
 
-    var email = document.getElementById("email");
-
-    var password = document.getElementById("password");
-
-    var confirmPassword = document.getElementById("confirmPassword");
-
-    var companyName = document.getElementById("companyName");
-
-    var address = document.getElementById("address");
-
-    var nip = document.getElementById("nip");
-
-    // Resetowanie błędów
-    var errors = document.querySelectorAll('.error');
-    errors.forEach(function(errorElement) {
-        errorElement.style.display = 'none';
-    });
-
-    // Walidacja Imię
-    if (firstName.value.trim() === "") {
-        document.getElementById("firstNameError").style.display = 'block';
+    // Validate firstName
+    if (firstName === '') {
+        document.getElementById('firstNameError').innerText = 'Imię jest wymagane.';
         isValid = false;
     }
 
-    // Walidacja Nazwisko
-    if (lastName.value.trim() === "") {
-        document.getElementById("lastNameError").style.display = 'block';
+    // Validate lastName
+    if (lastName === '') {
+        document.getElementById('lastNameError').innerText = 'Nazwisko jest wymagane.';
         isValid = false;
     }
 
-    // Walidacja e-mail
-    var emailpattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-    if (!emailpattern.test(email.value.trim())) {
-        document.getElementById("emailError").style.display = 'block';
+    // Validate email
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+        document.getElementById('emailError').innerText = 'Podaj poprawny adres e-mail.';
         isValid = false;
     }
 
-    // Walidacja hasła
-    if (password.value.length < 8) {
-        document.getElementById("passwordError").style.display = 'block';
+    // Validate password
+    if (password.length < 8) {
+        document.getElementById('passwordError').innerText = 'Hasło musi mieć co najmniej 8 znaków.';
         isValid = false;
     }
 
-    // Walidacja powtórzenia hasła
-    if (password.value !== confirmPassword.value) {
-        document.getElementById("confirmPasswordError").style.display = 'block';
+    // Validate confirmPassword
+    if (password !== confirmPassword) {
+        document.getElementById('confirmPasswordError').innerText = 'Hasła muszą być identyczne.';
         isValid = false;
     }
 
-    // Walidacja nazwy firmy
-    if (companyName.value.trim() === "") {
-        document.getElementById("companyNameError").style.display = 'block';
+    // Validate companyName
+    if (companyName === '') {
+        document.getElementById('companyNameError').innerText = 'Nazwa firmy jest wymagana.';
         isValid = false;
     }
 
-    // Walidacja adresu
-    if (address.value.trim() === "") {
-        document.getElementById("addressError").style.display = 'block';
+    // Validate address
+    if (address === '') {
+        document.getElementById('addressError').innerText = 'Adres jest wymagany.';
         isValid = false;
     }
 
-    // Walidacja NIP
-    var nipPattern = /^\d{10}$/;
-    if (!nipPattern.test(nip.value.trim())) {
-        document.getElementById("nipError").style.display = 'block';
+    // Validate NIP
+    const nipPattern = /^\d{10}$/;
+    if (!nipPattern.test(nip)) {
+        document.getElementById('nipError').innerText = 'NIP musi zawierać dokładnie 10 cyfr.';
         isValid = false;
     }
 
-    // Jeżeli formularz jest poprawny, wyświetl alert
+    // If valid, alert success
     if (isValid) {
-        alert("Formularz został wypełniony poprawnie.");
+        alert('Formularz został poprawnie wypełniony.');
     }
+
+    return isValid;
 }
