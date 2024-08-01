@@ -39,6 +39,12 @@ function validateForm() {
         isValid = false;
     }
 
+    if (password.length > 45) {
+        document.getElementById('passwordError').innerText = 'Hasło nie może mieć więcej niż 45 znaków.';
+        isValid = false;
+    }
+    
+
     // Validate confirmPassword
     if (password !== confirmPassword) {
         document.getElementById('confirmPasswordError').innerText = 'Hasła muszą być identyczne.';
