@@ -1,8 +1,12 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 $servername = "localhost";
 $username = "root";
-$password = "YRMgerman5354"; 
-$dbname = "my_db";
+$password = "root"; 
+$dbname = "form_db";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
