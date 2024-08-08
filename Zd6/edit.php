@@ -1,19 +1,19 @@
 <?php
-include 'db.php'; // Файл з підключенням до бази даних
+include 'db.php'; 
 
 $id = $_GET['id'];
 
-// Запит для отримання поточного терміну та його визначення
+// Query to get the current term and define it
 $sql = "SELECT term, definition FROM terms WHERE id=$id";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
 } else {
-    die("Термін не знайдено");
+    die("Term not found");
 }
 
-// Оновлення терміну та визначення
+// Update term and definition
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $term = $conn->real_escape_string($_POST['term']);
     $definition = $conn->real_escape_string($_POST['definition']);
@@ -21,9 +21,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $update_sql = "UPDATE terms SET term='$term', definition='$definition' WHERE id=$id";
     
     if ($conn->query($update_sql) === TRUE) {
-        echo "Термін успішно оновлено";
+        echo "Term updated successfully";
     } else {
-        echo "Помилка: " . $conn->error;
+        echo "Error: " . $conn->error;
     }
 }
 ?>
